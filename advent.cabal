@@ -27,6 +27,7 @@ library
   exposed-modules:
       Day1_1
       Day1_2
+      Day2_1
   other-modules:
       Paths_advent
   hs-source-dirs:
