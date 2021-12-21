@@ -1,4 +1,4 @@
-module Day2_1
+module Day2_2
     ( solve
     ) where
 
@@ -6,15 +6,15 @@ import Text.Read (readMaybe)
 
 data Command = Forward Int | Up Int | Down Int
 
-accumulateCommands' :: Int -> Int -> [Command] -> Int
-accumulateCommands' forward depth [] = forward * depth
-accumulateCommands' forward depth (x:xs) =
-  case x of (Forward a) -> accumulateCommands' (forward + a) depth xs
-            (Up a)      -> accumulateCommands' forward (depth - a) xs
-            (Down a)    -> accumulateCommands' forward (depth + a) xs
+accumulateCommands' :: Int -> Int -> Int -> [Command] -> Int
+accumulateCommands' aim forward depth [] = forward * depth
+accumulateCommands' aim forward depth (x:xs) =
+  case x of (Forward a) -> accumulateCommands' aim (forward + a) (depth + aim * a) xs
+            (Up a)      -> accumulateCommands' (aim - a) forward depth xs
+            (Down a)    -> accumulateCommands' (aim + a) forward depth xs
 
 accumulateCommands :: [Command] -> Int
-accumulateCommands = accumulateCommands' 0 0
+accumulateCommands = accumulateCommands' 0 0 0
 
 parseCommand :: String -> Maybe Command
 parseCommand str =

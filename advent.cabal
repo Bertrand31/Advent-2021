@@ -28,6 +28,7 @@ library
       Day1_1
       Day1_2
       Day2_1
+      Day2_2
   other-modules:
       Paths_advent
   hs-source-dirs:
