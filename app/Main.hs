@@ -1,8 +1,11 @@
 module Main where
 
-import Day1
+import Day1_1
+import Day1_2
 
 main :: IO ()
 main = do
-  contents <- readFile "day1.txt"
-  putStrLn $ show $ Day1.solve $ lines contents
+  day1_1 <- readFile "day1_1.txt"
+  putStrLn $ show $ Day1_1.solve $ lines day1_1
+  day1_2 <- readFile "day1_2.txt"
+  putStrLn $ show $ Day1_2.solve $ lines day1_2
