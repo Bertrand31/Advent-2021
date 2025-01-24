@@ -18,10 +18,10 @@ accumulateCommands = accumulateCommands' 0 0 0
 
 parseCommand :: String -> Maybe Command
 parseCommand str =
-  case (words str) of "forward":stepsStr:[] -> fmap Forward $ readMaybe stepsStr
-                      "up":stepsStr:[]      -> fmap Up $ readMaybe stepsStr
-                      "down":stepsStr:[]    -> fmap Down $ readMaybe stepsStr
-                      _                     -> Nothing
+  case words str of ["forward", stepsStr] -> Forward <$> readMaybe stepsStr
+                    ["up", stepsStr]      -> Up <$> readMaybe stepsStr
+                    ["down", stepsStr]    -> Down <$> readMaybe stepsStr
+                    _                     -> Nothing
 
 
 solve :: [String] -> Maybe Int

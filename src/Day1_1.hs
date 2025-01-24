@@ -3,19 +3,19 @@ module Day1_1
     ) where
 
 import Text.Read (readMaybe)
-import Data.Maybe (catMaybes)
+import Data.Maybe (mapMaybe)
 
 parseDepths :: [String] -> [Int]
-parseDepths = catMaybes . (fmap readMaybe)
+parseDepths = mapMaybe readMaybe
 
 countIncreasing :: [(Int, Int)] -> Int
 countIncreasing = length . (filter $ uncurry (<))
 
 makePairs :: [a] -> Maybe [(a, a)]
 makePairs []       = Nothing
-makePairs (x:[])   = Nothing
-makePairs (x:y:[]) = Just [(x, y)]
+makePairs [x]   = Nothing
+makePairs [x, y] = Just [(x, y)]
 makePairs (x:y:xs) = fmap ((x, y):) $ makePairs $ y:xs
 
 solve :: [String] -> Maybe Int
-solve = (fmap countIncreasing) . makePairs . parseDepths
+solve = fmap countIncreasing . makePairs . parseDepths
